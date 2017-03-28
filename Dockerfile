@@ -3,7 +3,7 @@ FROM perl:latest
 ARG md="example.md"
 
 # Mount a markdownfile
-ADD ./${md} /root
+ADD . /root
 
 # Install nginx
 RUN apt -y update
