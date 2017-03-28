@@ -1,7 +1,9 @@
 FROM perl:latest
 
+ARG md="example.md"
+
 # Mount a markdownfile
-ADD ./${MD_FILE} /root
+ADD ./${md} /root
 
 # Install nginx
 RUN apt -y update
@@ -19,7 +21,7 @@ RUN git clone https://github.com/yoshiki/markdown2impress.git
 
 # Generate resources
 WORKDIR /root/markdown2impress/bin/
-RUN ./markdown2impress.pl /root/${MD_FILE}
+RUN ./markdown2impress.pl /root/${md}
 RUN cp -ipr index.html js/ css/ /var/www/html/
 
 # Start Slide
