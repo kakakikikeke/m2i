@@ -1,4 +1,4 @@
-FROM perl:latest
+FROM perl:5.34.0
 
 ARG md="example.md"
 
@@ -11,12 +11,13 @@ RUN apt -y install nginx
 RUN apt -y install fonts-vlgothic fonts-takao-gothic fonts-ipafont-gothic fonts-ipaexfont-gothic
 
 # Install libs
-RUN yes '' | cpan -i Data::Section::Simple
-RUN yes '' | cpan -i Text::Markdown
-RUN yes '' | cpan -i Text::Xslate
-RUN yes '' | cpan -i Path::Class
+RUN cpanm Data::Section::Simple
+RUN cpanm Text::Markdown
+RUN cpanm Text::Xslate
+RUN cpanm Path::Class
 
 # Install markdown2imporess
+WORKDIR /root
 RUN git clone https://github.com/yoshiki/markdown2impress.git
 
 # Generate resources
